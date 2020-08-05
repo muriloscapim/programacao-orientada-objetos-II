@@ -78,7 +78,7 @@ O modificador abstract só pode ser usado em métodos de instância. Ele não po
 
 **Uma classe que contém um ou mais métodos abstratos também deve ser declarada como abstrata** precedendo sua declaração class com o modificador abstract.
 
-**Um método abstrato pertence a uma classe abstrata**
+**Um método abstrato pertence a uma classe abstrata.**
 
 Já que uma classe abstrata não define uma implementação completa, **não podem existir objetos dessa classe**.
 
@@ -88,7 +88,7 @@ Ao tentar criar um objeto de uma classe abstrata usando new resultará em um err
 
 Uma classe abstrata também pode conter métodos concretos que uma subclasse possa usar da forma em que se encontram.
 
-**Os métodos declarados como **abstract** têm que ser sobrepostos (sobreescritos) pelas subclasses.
+**Os métodos declarados como ** *abstract* têm que ser sobrepostos (sobreescritos) pelas subclasses.**
 
 Exemplo no IntelliJ
 
@@ -199,18 +199,3 @@ public class AbsShape {
     }
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
