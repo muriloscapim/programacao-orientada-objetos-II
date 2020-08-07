@@ -40,7 +40,7 @@ Para impedir que uma classe seja herdada precedemos sua declaração com **final
 
 Do ponto de vista conceitual, não é relevante ter uma classe que não poderia ser herdada e instanciada.
 
-Porém, por exemplo, uma classe utilitária, geralmente não precisa ser herdada e instanciada, pois todos seus métodos são estáticos. Poderiamos tornar o construtor dessa classe como private, para não poder ser instanciada.
+Porém, por exemplo, uma classe utilitária, geralmente não precisa ser herdada e instanciada, pois todos seus métodos são estáticos. Poderiamos tornar o construtor dessa classe como private, para não poder ser instanciada. Exemplo a classe Math.
 
 Exemplo:
 
@@ -78,3 +78,7 @@ public class DemoFinalVariable {
 }
 ```
 :pushpin: Por uma questão estilística, muitos programadores de Java usam identificadores maiúsculos em constantes final, não é uma regra fixa.
+
+** A palavra-chave final é um modificador de não acesso (non-access modifier) usada para classes, atributos e métodos, o que os torna inálteraveis (impossíveis de herdar ou substituir).
+
+A palavra-chave final é útil quando você deseja que uma variável armazene sempre o mesmo valor. Exemplo o PI da classe Math.
