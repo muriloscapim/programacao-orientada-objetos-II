@@ -79,6 +79,6 @@ public class DemoFinalVariable {
 ```
 :pushpin: Por uma questão estilística, muitos programadores de Java usam identificadores maiúsculos em constantes final, não é uma regra fixa.
 
-** A palavra-chave final é um modificador de não acesso (non-access modifier) usada para classes, atributos e métodos, o que os torna inálteraveis (impossíveis de herdar ou substituir).
+**A palavra-chave final é um modificador de não acesso (non-access modifier) usada para classes, atributos e métodos, o que os torna inálteraveis (impossíveis de herdar ou substituir).**
 
 A palavra-chave final é útil quando você deseja que uma variável armazene sempre o mesmo valor. Exemplo o PI da classe Math.
