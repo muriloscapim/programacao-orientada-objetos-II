@@ -88,7 +88,7 @@ Ao tentar criar um objeto de uma classe abstrata usando new resultará em um err
 
 Uma classe abstrata também pode conter métodos concretos que uma subclasse possa usar da forma em que se encontram.
 
-**Os métodos declarados como ** *abstract* têm que ser sobrepostos (sobreescritos) pelas subclasses.**
+**Os métodos declarados como *abstract* têm que ser sobrepostos (sobreescritos) pelas subclasses.**
 
 Exemplo no IntelliJ
 
