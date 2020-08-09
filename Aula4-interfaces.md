@@ -57,6 +57,10 @@ A classe que incluir a interface deve implementar todos os seus métodos.
 
 **As variáveis declaradas em uma interface não são variáveis de instância. São implicitamente public, final e static e devem ser inicializadas. São constantes.**
 
+### Implementando interfaces
+
+Para implementar uma interface, inclua a cláusula **implements** em uma definição de classe e crie os métodos requeridos pela interface.
+
 Exemplo no IntelliJ
 
 ```java
