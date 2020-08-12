@@ -1,3 +1,9 @@
+# Pacotes
+
+Pacotes são grupos de classes relacionadas.
+
+Os pacotes ajudam a organizar o código e fornecem outra camada de encapsulamento. (controle de acesso)
+
 # Pacotes e o acesso a membros
 
 Os pacotes também participam do mecanismo de controle de acesso Java.
