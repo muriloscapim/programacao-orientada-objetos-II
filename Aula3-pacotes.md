@@ -5,6 +5,8 @@ Um pacote em Java é um namespace usado para agrupar um conjunto de interfaces e
 Usamos pacotes para evitar conflitos de nomes e para escrever um código de melhor manutenção. Os pacotes são divididos em duas categoria:
 - Pacotes integrados (pacotes da API Java) e os Pacotes definidos pelo usuário.
 
+![Built-in-packages-in-java](https://user-images.githubusercontent.com/56240254/90011726-7ed07b80-dc78-11ea-8ae9-6c57e1c8a0cf.jpg)
+
 Os pacotes ajudam a organizar o código e fornecem outra camada de encapsulamento. (controle de acesso).
 
 As classes definidas dento de um pacote devem ser acessadas com o uso do nome de seu pacote.
@@ -20,7 +22,7 @@ import package.name.*; // Import the whole package
 
 ### Importar uma classe
 
-Exemplo
+Exemplo no IntelliJ
 
 ```java
 import java.util.Scanner; // import the Scanner class 
