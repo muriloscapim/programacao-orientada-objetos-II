@@ -1,6 +1,19 @@
 ## Interfaces
 
-Uma interface é sintaticamente semelhante a uma classe abstrata pois podemos especificar um ou mais métodos sem corpo.
+Interface é um tipo que define um conjunto de operações que uma classe deve implementar.
+
+A interface estabelece um **contrato** que a classe deve cumprir.
+
+```java
+interface Shape {
+    double area();
+    double perimeter();
+}
+```
+
+![why-use-java-interface](https://user-images.githubusercontent.com/56240254/90635436-96bb7880-e1ff-11ea-9beb-21d63592fbd7.jpg)
+
+Uma interface é sintaticamente semelhante a uma classe abstrata pois podemos especificar um ou mais métodos sem corpo (métodos abstratos).
 
 Estes métodos devem ser implementados por uma classe para que suas ações sejam definidas.
 
@@ -12,7 +25,7 @@ Para implementar uma interface, a classe deve implementar os métodos descritos 
 
 Duas classes podem implementar a mesma interface de diferentes maneiras, mas ambas darão suporte ao mesmo conjunto de métodos.
 
-A partir do JDK 8 é possível adicionar um método concreto a uma interface. Usando o modificador default.
+A partir do JDK 8 é possível adicionar um método concreto a uma interface "default methods". Usando o modificador default.
     Todas as classes que implementarem esta interface já ganham uma implementação do método.
     Suas implementações não precisam necessariamente reescrevê-lo.
     É possível reescrevê-lo nas classes que implementam a interface.
@@ -48,7 +61,6 @@ public class Principal {
 	}
 }
 ```
-
 Na forma tradicional de uma interface, **os métodos são declarados apenas seu tipo de retorno e assinatura. São métodos abstratos.**
 
 A classe que incluir a interface deve implementar todos os seus métodos.
@@ -92,8 +104,7 @@ class MyMainClass {
   }
 }
 ```
-
-implementando várias interfaces
+### Implementando várias interfaces
 
 ```java
 interface FirstInterface {
@@ -127,3 +138,117 @@ class MyMainClass {
   }
 }
 ```
+
+Exemplo no IntelliJ
+
+```java
+public interface FiguraGeometrica {
+  
+  public String getNomeFigura();
+  public int getArea();
+  public int getPerimetro();
+}
+```
+
+```java
+public class Quadrado implements FiguraGeometrica {
+
+    private int lado;
+
+    public int getLado() {
+        return lado;
+    }
+
+    public void setLado(int lado) {
+        this.lado = lado;
+    }
+
+    @Override
+    public String getNomeFigura() {
+        return "quadrado";
+    }
+
+    @Override
+    public int getArea() {
+        return lado * lado;
+    }
+
+    @Override
+    public int getPerimetro() {
+        return lado * 4;
+    }
+}
+```
+
+```java
+public class Triangulo implements FiguraGeometrica {
+
+    private int base;
+    private int altura;
+    private int ladoA;
+    private int ladoB;
+    private int ladoC;
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getBase() {
+        return base;
+    }
+
+    public void setBase(int base) {
+        this.base = base;
+    }
+
+    public int getLadoA() {
+        return ladoA;
+    }
+
+    public void setLadoA(int ladoA) {
+        this.ladoA = ladoA;
+    }
+
+    public int getLadoB() {
+        return ladoB;
+    }
+
+    public void setLadoB(int ladoB) {
+        this.ladoB = ladoB;
+    }
+
+    public int getLadoC() {
+        return ladoC;
+    }
+
+    public void setLadoC(int ladoC) {
+        this.ladoC = ladoC;
+    }
+
+    @Override
+    public String getNomeFigura() {
+        return "Triangulo";
+    }
+
+    @Override
+    public int getArea() {
+        return (base * altura) / 2;
+    }
+
+    @Override
+    public int getPerimetro() {
+        return ladoA + ladoB + ladoC;
+    }
+}
+```
+Ambas as classe seguiram o contrato da interface FiguraGeometrica, porém cada uma delas a implementou de maneira diferente.
+
+Ao contrário da herança que limita uma classe a herdar somente uma classe pai por vez, é possível que uma classe implemente várias interfaces.
+
+![abstract-class-vs-interface](https://user-images.githubusercontent.com/56240254/90635607-c66a8080-e1ff-11ea-987d-451b628af611.png)
+
+![InterfaceVsAbstractClassJava8](https://user-images.githubusercontent.com/56240254/90635655-d5e9c980-e1ff-11ea-9ed6-8974995c5633.png)
