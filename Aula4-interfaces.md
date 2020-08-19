@@ -4,6 +4,8 @@ Interface é um tipo que define um conjunto de operações que uma classe deve i
 
 A interface estabelece um **contrato** que a classe deve cumprir.
 
+Nas aplicações orientadas a objetos podemos criar um "contrato" para definir um conjunto de métodos que devem ser implementado pelas classes que "assinarem" este contrato.
+
 ```java
 interface Shape {
     double area();
@@ -54,11 +56,11 @@ public class CaixaEletronico implements ICaixaEletronico {
 
 ```java
 public class Principal {
-	public static void main(String[] args) {
-		CaixaEletronico caixa = new CaixaEletronico();
-		caixa.verificaFraude();
-		caixa.sacar(10);
-	}
+   public static void main(String[] args) {
+      CaixaEletronico caixa = new CaixaEletronico();
+      caixa.verificaFraude();
+      caixa.sacar(10);
+   }
 }
 ```
 Na forma tradicional de uma interface, **os métodos são declarados apenas seu tipo de retorno e assinatura. São métodos abstratos.**
@@ -141,114 +143,100 @@ class MyMainClass {
 
 Exemplo no IntelliJ
 
+Podemos definir uma interface (contrato) para padronizar as assinaturas dos métodos oferecidos pelos objetos que representam as contas em um sistema de um banco.
+
 ```java
-public interface FiguraGeometrica {
-  
-  public String getNomeFigura();
-  public int getArea();
-  public int getPerimetro();
+interface Conta {
+  void deposita(double valor);
+  void saca(double valor);
+  double getSaldo();
+}
+```
+
+Os métodos de uma interface não possuem corpo (implementação) pois serão implementados nas classes que implementarem a interface.
+
+:pushpin: Todos os métodos em uma interface são **públicos** e **abstratos**. Os modificadores public e abstract são opcionais.
+
+```java
+class ContaPoupanca implements Conta {
+   private double saldo;
+   
+   public void deposita(double valor) {
+      this.saldo += valor;
+   }
+   
+   public void saca(double valor) {
+      this.saldo -= valor;
+   }
+   
+   public double getSaldo() {
+      return this.saldo;
+   }
 }
 ```
 
 ```java
-public class Quadrado implements FiguraGeometrica {
+class ContaCorrente implements Conta {
+   private double saldo;
+   private double taxaPorOperacao = 0.45;
+   
+   public void deposita(double valor) {
+      this.saldo += valor - this.taxaPorOperacao;
+   }
+   
+   public void saca(double valor) {
+      this.saldo -= valor + this.taxaPorOperacao;
+   }
+   
+   public double getSaldo() {
+      return this.saldo;
+   }
+}
+```
 
-    private int lado;
+:pushpin: As classes concretas que implementam a interface são obrigadas a possuir uma implementação para cada método declarado na interface. Caso contrário, ocorrerá um erro de compilação.
 
-    public int getLado() {
-        return lado;
-    }
+:pushpin: **Como vantagens de utilizar interfaces é a padronização das assinaturas dos métodos oferecidos por um determinado conjunto de classes.**
 
-    public void setLado(int lado) {
-        this.lado = lado;
-    }
+:pushpin: **A garantia que as classes implementem certos métodos.**
 
-    @Override
-    public String getNomeFigura() {
-        return "quadrado";
-    }
+:pushpin: **Polimorfismo**.
 
-    @Override
-    public int getArea() {
-        return lado * lado;
-    }
+## Polimorfismo
 
-    @Override
-    public int getPerimetro() {
-        return lado * 4;
-    }
+Se uma classe implementa uma interface, podemos aplicar a ideia do polimorfismo assim como na herança.
+
+Podemos guardar a referência de um objeto do tipo ContaCorrente em uma variável do tipo Conta.
+
+Podemos passar uma variável do tipo ContaCorrente para um método que o parâmetro seja do tipo Conta.
+
+```java
+class GeradorDeExtrato {
+  public void geraExtrato(Conta c) {
+      System.out.println("EXTRATO *** SALDO: " + c.getSaldo());
+  }
 }
 ```
 
 ```java
-public class Triangulo implements FiguraGeometrica {
-
-    private int base;
-    private int altura;
-    private int ladoA;
-    private int ladoB;
-    private int ladoC;
-
-    public int getAltura() {
-        return altura;
-    }
-
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
-
-    public int getBase() {
-        return base;
-    }
-
-    public void setBase(int base) {
-        this.base = base;
-    }
-
-    public int getLadoA() {
-        return ladoA;
-    }
-
-    public void setLadoA(int ladoA) {
-        this.ladoA = ladoA;
-    }
-
-    public int getLadoB() {
-        return ladoB;
-    }
-
-    public void setLadoB(int ladoB) {
-        this.ladoB = ladoB;
-    }
-
-    public int getLadoC() {
-        return ladoC;
-    }
-
-    public void setLadoC(int ladoC) {
-        this.ladoC = ladoC;
-    }
-
-    @Override
-    public String getNomeFigura() {
-        return "Triangulo";
-    }
-
-    @Override
-    public int getArea() {
-        return (base * altura) / 2;
-    }
-
-    @Override
-    public int getPerimetro() {
-        return ladoA + ladoB + ladoC;
-    }
+public class DemoInterface {
+   public static void main(String[] args) {
+   
+      ContaCorrente cc = new ContaCorrente();
+      ContaPoupanca cp = new ContaPoupanca();
+      
+      cc.deposita(500);
+      cp.deposita(500);
+      
+      cc.saca(100);
+      cp.saca(150);
+       
+      GeradorDeExtrato extrato = new GeradorDeExtrato();
+      extrato.geraExtrato(cc);
+      extrato.geraExtrato(cp);
+   }
 }
 ```
-Ambas as classe seguiram o contrato da interface FiguraGeometrica, porém cada uma delas a implementou de maneira diferente.
-
-Ao contrário da herança que limita uma classe a herdar somente uma classe pai por vez, é possível que uma classe implemente várias interfaces.
-
 ![abstract-class-vs-interface](https://user-images.githubusercontent.com/56240254/90635607-c66a8080-e1ff-11ea-987d-451b628af611.png)
 
 ![InterfaceVsAbstractClassJava8](https://user-images.githubusercontent.com/56240254/90635655-d5e9c980-e1ff-11ea-9ed6-8974995c5633.png)
