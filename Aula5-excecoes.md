@@ -1,6 +1,6 @@
 # Exceções
 
-Uma exceção é um erro que ocorre no tempo de execução. Ex: divisão por zero, arquivo não encontrado, conectar em um servidor inexistente.
+Uma exceção é um erro que ocorre no tempo de execução. Ex: divisão por zero, arquivo não encontrado, conectar em um servidor inexistente, tentar escrever em um arquivo sobre o qual não se tem permissão de escrita.
 
 Usando o tratamento de exceções do Java, podemos tratar erros de tempo de execução de maneira estruturada e controlada.
 
@@ -41,6 +41,10 @@ catch(Exception e) {
 }
 ```
 
+No bloco **try** são introduzidas todas as linhas de código que podem vir a lançar uma exceção.
+
+No bloco **catch** é descrita a ação que ocorrerá quando a exceção for capturada.
+
 Quando uma exceção é lançada, ela é capturada pela instrução **catch** correspondente, que então a processa.
 
 Podemos ter mais de uma instrução catch associada a uma instrução try.
@@ -69,6 +73,7 @@ public class MyClass {
 ```
 
 Capturar exceções Java impede que o programa seja encerrado de modo anormal. Quando uma exceção é lançada, ela deve ser capturada por um código em algum local.
+
 Quando o programa não captura uma exceção, ela é capturada pela JVM. O tratador de exceções padrão da JVM encerra a execução e exibe um rastreamento de pilha e uma mensagem de erro.
 
 ```java
