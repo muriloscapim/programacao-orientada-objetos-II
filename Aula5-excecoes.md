@@ -84,3 +84,214 @@ public class MyClass {
   }
 }
 ```
+Toda e qualquer aplicação está sujeita a falhas e, por conta disso, precisa ter um tratamento dessas falhas.
+
+
+## Lançando uma exceção
+
+Até então capturamos exceções geradas automaticamente pela JVM.
+
+Contudo, é possível lançar manualmente uma exceção usando a instrução **throw**.
+
+Sua forma geral é:
+
+**throw objExc**
+
+objExc deve ser um objeto de uma classe de exceção derivada de Throwable.
+
+Exemplo que mostra a instrução throw lançando manualmente uma ArithmeticException:
+
+```java
+public class MyClass {
+  static void checkAge(int age) { 
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old."); 
+    } else {
+      System.out.println("Access granted - You are old enough!"); 
+    }
+ } 
+ 
+ public static void main(String[] args) { 
+   checkAge(15); 
+ } 
+}
+```
+
+A instrução throw lança um objeto, logo, devemos criar um objeto usando o operador new para ela lançar.
+
+## Usando finally
+
+Podemos definir um bloco de código para ser executado na saída de um bloco try/catch.
+
+Por exemplo, uma exceção poderia causar um erro que encerrasse o método atual, no entanto, esse método pode ter aberto uma conexão de rede ou arquivo que precise ser fechado.
+
+Esses tipos de circunstâncias são comuns em programação e no Java podemos tratá-las dentro do bloco **finally**.
+
+Para criar um bloco de código que será executado após os blocos try/catch, incluimos um bloco finally ao final de uma sequência try/catch.
+
+Forma geral de um bloco try/catch que inclui um bloco finally:
+
+```java
+try {
+	// bloco de código cujos erros estão sendo monitorados
+}
+catch (TipoExceção1 obj) {
+	// tratador de TipoExceção1
+}
+catch (TipoExceção2 obj) {
+	// tratador de TipoExceção2
+}
+finally {
+	// código do bloco finally
+}
+```
+
+**O bloco finally será executado sempre que a execução deixar um bloco try/catch, não importando as condições causadoras.**
+
+Isto é, tendo o bloco try terminado normalmente (não ocorreu nenhuma exceção), ou devido a uma exceção, o último código executado será o definido por finally.
+
+Exemplo no IntelliJ
+
+```java
+public class FinallyDemo {
+  public static void main(String[] args) {
+    try {
+      int[] myNumbers = {1, 2, 3};
+      System.out.println(myNumbers[10]);
+    } catch (Exception e) {
+      System.out.println("Something went wrong.");
+    } finally {
+      System.out.println("The 'try catch' is finished.");
+    }
+  }
+}
+```
+
+## Usando throws
+
+Em alguns casos, quando um método gera uma exceção que ele não trata, deve declará-la em uma clausa **throws**.
+
+Lança exceções para fora do método, que serão tratadas por quem chamar o método.
+
+A forma geral de um método que inclui uma cláusula throws é a seguinte:
+
+```java
+tipo-ret nomeMét(lista-parâm) throws lista-exceções {
+	// corpo do método
+}
+```
+
+lista-exceções é uma lista separada por vírgulas com as exceções que o método pode lançar para fora dele.
+
+Exceções que são subclasses de Error e RuntimeException não precisam ser especificadas em uma lista throws. Todos os outros tipos de exceções têm de ser declaradas senão causará um erro de tempo de compilação.
+
+```java
+public class MyClass {
+  static void checkAge(int age) throws ArithmeticException {
+    if (age < 18) {
+      throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+    }
+    else {
+      System.out.println("Access granted - You are old enough!");
+    }
+  }
+
+  public static void main(String[] args) {
+    checkAge(15); // Set age to 15 (which is below 18...)
+  }
+}
+```
+
+
+## Diferences between **throw** and **throws**:
+
+![throw-throws](https://user-images.githubusercontent.com/56240254/92621726-8b0d2000-f29a-11ea-9c5f-69f99cd1fe49.PNG)
+
+## Checked e Unchecked Exceptions
+
+**Exceções Checked** são as exceções **verificadas em tempo de compilação**, aquelas no qual **somos obrigados a tratá-la**, seja com um bloco try-catch ou com um throws (relançando a mesma para outro local).
+
+Se algum código dentro de um método lançar uma exceção verificada, o método deve tratar a exceção ou deve especificar a exceção usando a palavra chave throws.
+
+**Exceções Unchecked** são as exceções que **não são verificadas em tempo de compilação**, não é obrigatório o tratamento da mesma, você pode tratar apenas se quiser, se for necessário para o bom funcionamento da sua aplicação.
+
+Checked exceptions são utilizadas para erros recuperáveis enquanto que Unchecked exceptions são utilizadas para erros irrecuperáveis.
+
+Exemplo no IntelliJ
+
+```java
+public class CheckedExceptions {
+    public static void main(String[] args) {
+        
+        FileReader file = new FileReader("C:\\test\\test.txt");
+        BufferedReader fileInput = new BufferedReader(file);
+
+        // Print first 3 lines of file "C:\test\a.txt" 
+        for (int counter = 0; counter < 3; counter++)
+            System.out.println(fileInput.readLine());
+
+        fileInput.close();
+    }
+}
+```
+
+FileReader lança uma exceção checada, somos obrigados a tratá-la.
+
+Para corrigir o exemplo, precisamos especificar a lista de exceções usando throws ou usar o bloco try/catch.
+
+*Como FileNotFoundException é uma subclasse de IOException, podemos apenas especificar IOException na lista de exceções do throws e assim tratar as exceções.*
+
+```java
+public class CheckedExceptions {
+    public static void main(String[] args) throws IOException {
+
+        FileReader file = new FileReader("C:\\test\\test.txt");
+        BufferedReader fileInput = new BufferedReader(file);
+
+        // Print first 3 lines of file "C:\test\a.txt"
+        for (int counter = 0; counter < 3; counter++)
+            System.out.println(fileInput.readLine());
+
+        fileInput.close();
+    }
+}
+```
+
+```java
+public class UncheckedExceptions {
+    public static void main(String[] args) {
+        int x = 0;
+        int y = 10;
+        int z = y/x;
+    }
+}
+```
+O exemplo compila normalmente, mas quando executado lança uma ArithmeticException. O compilador permitiu a compilação, porque ArithmeticException é uma **exceção não verificada**.
+
+## Criando subclasses de exceções
+
+Embora as exceções internas do Java tratem os erros mais comuns, o mecanismo do Java de tratameto de exceções não se limita a esses erros.
+
+Com o uso de **exceções personalizadas**, podemos gerenciar erros que tenham relação direta com nosso aplicativo.
+
+**Para criar uma classe de exceção, só temos de criar uma subclasse de Exception** (Exception é subclasse de Throwable).
+
+A classe Exception não define um método próprio, mas herda os métodos fornecidos por Throwable. Logo, todas as exceções, inclusive as criadas por nós, têm os métodos definidos por Throwable.
+
+```java
+public class MyNewException extends Exception {
+
+    public MyNewException(){
+        super();
+    }
+
+    public MyNewException(String message){
+        super(message);
+    }
+}
+
+```
+
+Caso você precisar criar uma exceção unchecked, precisará extender a classe RuntimeException.
+
+:point_right: **Uma exception checada é aquela que requer que a exceção seja tratada em um bloco try/catch ou tenha uma cláusula throws na declaração do método.**
