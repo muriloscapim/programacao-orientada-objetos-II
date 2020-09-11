@@ -166,6 +166,26 @@ public class FinallyDemo {
   }
 }
 ```
+Exemplo no IntelliJ
+
+```java
+public class ExceptionTest {
+
+  public static void main(String[] args) {
+    
+    String[] nomes = { "Ana", "Claudio", "Sabrina" };	
+    
+    try {
+      System.out.println(nomes[2]);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("Posição inválida");
+    } finally {
+      System.out.println("Fim da execução");
+    }	
+  }
+
+}
+```
 
 ## Usando throws
 
@@ -295,26 +315,6 @@ public class MyNewException extends Exception {
 Caso você precisar criar uma exceção unchecked, precisará extender a classe RuntimeException.
 
 :point_right: **Uma exception checada é aquela que requer que a exceção seja tratada em um bloco try/catch ou tenha uma cláusula throws na declaração do método.**
-
-
-```java
-public class ExceptionTest {
-
-  public static void main(String[] args) {
-    
-    String[] nomes = { "Ana", "Claudio", "Sabrina" };	
-    
-    try {
-      System.out.println(nomes[2]);
-    } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Posição inválida");
-    } finally {
-      System.out.println("Fim da execução");
-    }	
-  }
-
-}
-```
 
 ## Criar exceções personalizadas
 
