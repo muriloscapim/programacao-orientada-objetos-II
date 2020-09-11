@@ -295,3 +295,101 @@ public class MyNewException extends Exception {
 Caso você precisar criar uma exceção unchecked, precisará extender a classe RuntimeException.
 
 :point_right: **Uma exception checada é aquela que requer que a exceção seja tratada em um bloco try/catch ou tenha uma cláusula throws na declaração do método.**
+
+
+```java
+public class ExceptionTest {
+
+  public static void main(String[] args) {
+    
+    String[] nomes = { "Ana", "Claudio", "Sabrina" };	
+    
+    try {
+      System.out.println(nomes[2]);
+    } catch (ArrayIndexOutOfBoundsException e) {
+      System.out.println("Posição inválida");
+    } finally {
+      System.out.println("Fim da execução");
+    }	
+  }
+
+}
+```
+
+## Criar exceções personalizadas
+
+```java
+public class Excecao extends RuntimeException {
+
+  public Excecao(String msg) {
+    super(msg);
+  }
+}
+```
+
+```java
+import java.util.Date;
+
+public class Pessoa {
+
+  private String nome;
+  private Date nascimento;
+
+  public Pessoa() {}
+  
+  public Pessoa(String nome, Date nascimento) {
+    super();
+    this.nome = nome;
+    this.nascimento = nascimento;
+  }
+
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public Date getNascimento() {
+    return nascimento;
+  }
+
+  public void setNascimento(Date nascimento) {
+    this.nascimento = nascimento;
+  }
+
+  // Será lançada uma exceção caso a data de nascimento seja
+  // uma data futura.
+  // Excecao é nossa classe de exceções personalizadas.
+  public void verificaDataNascimento(){
+    Date now = new Date();
+    if(nascimento.after(now)) {
+      throw new Excecao("A data de nascimento não pode ser uma data futura");
+    } else {
+      System.out.println("Data válida");
+    }
+  }
+}
+```
+
+```java
+public class Main {
+  public static void main(String[] args) {
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    try {
+      Pessoa p1 = new Pessoa("Ana", sdf.parse("10/10/2001"));
+      // Pessoa p1 = new Pessoa("Ana", sdf.parse("1010/2001")); //formato inválido
+      // Pessoa p1 = new Pessoa("Ana", sdf.parse("10/10/2020")); //data futura
+      
+      p1.verificaDataNascimento();
+    
+    } catch (ParseException e) {
+      System.out.println("Formato inválido para data");
+    } catch (Excecao e) {
+      System.out.println("Erro na data: " + e.getMessage());
+    }
+  }
+}
+```
