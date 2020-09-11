@@ -243,10 +243,10 @@ Exemplo no IntelliJ
 public class CheckedExceptions {
     public static void main(String[] args) {
         
-        FileReader file = new FileReader("C:\\test\\test.txt");
+        FileReader file = new FileReader("C:\test\test.txt");
         BufferedReader fileInput = new BufferedReader(file);
 
-        // Print first 3 lines of file "C:\test\a.txt" 
+        // Print first 3 lines of file "C:\test\test.txt" 
         for (int counter = 0; counter < 3; counter++)
             System.out.println(fileInput.readLine());
 
