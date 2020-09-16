@@ -321,7 +321,7 @@ Caso você precisar criar uma exceção unchecked, precisará extender a classe 
 ## Criar exceções personalizadas
 
 ```java
-public class Excecao extends RuntimeException {
+public class DataInvalidaException extends RuntimeException {
 
   public Excecao(String msg) {
     super(msg);
@@ -363,11 +363,11 @@ public class Pessoa {
 
   // Será lançada uma exceção caso a data de nascimento seja
   // uma data futura.
-  // Excecao é nossa classe de exceções personalizadas.
+  // DataInvalidaException é nossa classe de exceções personalizadas.
   public void verificaDataNascimento(){
     Date now = new Date();
     if(nascimento.after(now)) {
-      throw new Excecao("A data de nascimento não pode ser uma data futura");
+      throw new DataInvalidaException("A data de nascimento não pode ser uma data futura");
     } else {
       System.out.println("Data válida");
     }
@@ -389,7 +389,7 @@ public class Main {
     
     } catch (ParseException e) {
       System.out.println("Formato inválido para data");
-    } catch (Excecao e) {
+    } catch (DataInvalidaException e) {
       System.out.println("Erro na data: " + e.getMessage());
     }
   }
