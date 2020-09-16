@@ -229,6 +229,8 @@ public class MyClass {
 
 ## Checked e Unchecked Exceptions
 
+![QwOiI](https://user-images.githubusercontent.com/9178386/93332193-daea6a80-f7f7-11ea-9f76-30e3c989cd5e.png)
+
 **Exceções Checked** são as exceções **verificadas em tempo de compilação**, aquelas no qual **somos obrigados a tratá-la**, seja com um bloco try-catch ou com um throws (relançando a mesma para outro local).
 
 Se algum código dentro de um método lançar uma exceção verificada, o método deve tratar a exceção ou deve especificar a exceção usando a palavra chave throws.
