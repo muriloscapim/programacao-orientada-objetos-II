@@ -202,9 +202,11 @@ public class ArrayListDemo {
 }
 ```
 
-Ordenar um ArrayList
+## Ordenação: Collections.sort
 
-Outra classe útil do pacote java.util é a classe Collections que inclui o método **sort()** para ordenar os elementos de um ArrayList em ordem alfabética ou númerica.
+A classe Collections possuí um método estático sort que recebe um List como argumento e o ordena por ordem crescente.
+
+Exemplo no IntelliJ
 
 ```java
 import java.util.ArrayList;
@@ -250,6 +252,8 @@ public class MyClass {
   }
 }
 ```
+Para ordenar uma List de objetos deve implementar a interface Comparable<T> e implementar o método compareTo() definindo o critério de ordenação.
+
 ## Generics
 
 Em qualquer lista é possível adicionar qualquer tipo de objetos.
@@ -298,26 +302,6 @@ class Empresa {
     private List<Funcionario> empregados = new ArrayList<>();
 }
 ```
-
-## Ordenação: Collections.sort
-
-A classe Collections possuí um método estático sort que recebe um List como argumento e o ordena por ordem crescente.
-
-Exemplo no IntelliJ
-
-```java
-List<String> lista = new ArrayList<>();
-lista.add("Sérgio");
-lista.add("Paulo");
-lista.add("Guilherme");
-
-Collections.sort(lista);
-
-System.out.println(lista);
-```
-
-Para ordenar uma List de objetos deve implementar a interface Comparable<T> e implementar o método compareTo() definindo o critério de ordenação.
-
 ## Lambda
 
 As expressões lambda foram adicionadas no Java 8.
