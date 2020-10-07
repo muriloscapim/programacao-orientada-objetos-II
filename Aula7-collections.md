@@ -283,7 +283,8 @@ contas.add("Uma string"); // erro!
 
 O uso de Generics elimina a necessidade de casting, já que todos os objetos inseridos na lista serão do tipo definido.
 
-Operador diamante.
+### Operador diamante
+
 ```java
 List<ContaCorrente> contas = new ArrayList<>();
 ```
