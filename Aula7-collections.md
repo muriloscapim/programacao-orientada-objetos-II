@@ -234,7 +234,7 @@ Ordenando um ArrayList de inteiros.
 import java.util.ArrayList;
 import java.util.Collections;  // Import the Collections class
 
-public class MyClass {
+public class ArrayListDemo {
   public static void main(String[] args) {
     ArrayList<Integer> myNumbers = new ArrayList<Integer>();
     myNumbers.add(33);
