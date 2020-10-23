@@ -1,15 +1,32 @@
-## Set
+## Set<T>
 
-A interface Set representa um conjunto, é uma coleção que não permite elementos duplicados.
+A interface Set representa um conjunto de elementos (similar ao da álgebra), é uma coleção que não permite elementos duplicados.
+
+Não admite repetições
+
+Elementos não possuem posição
+
+Acesso, inserção e remoção de elementos são rápidos
+
+Possue operações eficientes de conjunto: interseção, união, diferença.
 
 Estruturas do tipo Set aceitam apenas valores únicos, qualquer valor duplicado inserido em um set será automaticamente excluído.
 
 Principais classes que implementam a interface Set:
-* HashSet
-* LinkedHashSet
-* TreeSet
 
-TreeSet, HashSet e LinkedHashSet implementam a interface Set, temos os mesmos métodos para as três estruturas, o que difere cada uma é a forma com que  a estrutura de dados é implementada.
+* HashSet - mais rápido e não garante ordenação dos elementos da ordem que foram inseridos
+* TreeSet - mais lento
+* LinkedHashSet - velocidade intermediária e garante ordenação dos elementos na ordem em que são adicionados
+
+## Alguns métodos importantes
+
+**add(obj), remove(obj), contains(obj), clear(), size(), removeIf(predicate)**
+
+**addAll(other) - união:** adiciona no conjunto os elementos do outro conjunto, sem repetição
+
+**retainAll(other) - interseção:** remove do conjunto os elementos não contidos em other
+
+**removeAll(other) - diferença:** remove do conjunto os elementos contidos em other
 
 ## HashSet
 
@@ -66,6 +83,12 @@ O método **remove()** serve para remover um item.
 cars.remove("Volvo");
 ```
 
+```java
+cars.removeIf(x -> x.length() >= 4);
+
+cars.removeIf(x -> x.charAt(0) == 'F');
+```
+
 O método **clear()** serve para remover todos os itens.
 
 ```java
@@ -87,6 +110,38 @@ for (String i : cars) {
   System.out.println(i);
 }
 ```
+
+### Operações de conjunto
+
+```java
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Main {
+  public static void main(String[] args) {
+
+    Set<Integer> a = new TreeSet<>(Arrays.asList(0,2,4,5,6,8,10));
+    Set<Integer> b = new TreeSet<>(Arrays.asList(5,6,7,8,9,10));
+
+    // union
+    Set<Integer> c = new TreeSet<>(a); // cria uma cópia do conjunto a para o c
+    c.addAll(b); // união do conjunto c com o b
+    System.out.println(c);
+
+    // intersection
+    Set<Integer> d = new TreeSet<>(a);
+    d.retainAll(b); // interseção do conjunto d com b
+    System.out.println(d); // somente elementos que tem em comum nos conjuntos
+
+    // difference
+    Set<Integer> e = new TreeSet<>(a);
+    e.removeAll(b); // interseção do conjunto d com b
+    System.out.println(e); // elementos do conjunto a que não tem em b
+  }
+}
+```
+
 Exemplo
 
 ```java
